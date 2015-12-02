@@ -1,0 +1,17 @@
+server:
+  container_name: bastion_server
+  build: ./20151201
+  environment:
+    - LOGIN_PASSWD=hoge
+    - CACHE_HOST=cache
+  links:
+    - cache:cache
+  ports:
+    - "80:80"
+    - "3128:3128"
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+cache:
+  container_name: bastion_cache
+  image: redis:2.8
